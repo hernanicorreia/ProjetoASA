@@ -1,7 +1,10 @@
 #include <iostream>
 #include <vector>
 
-void manage_data(int lad_matx, int n_impt) {
+
+int main(){
+    int lad_matx, n_inpt, n_resul;
+
     std::vector<std::vector<int>> matrix(lad_matx, std::vector<int>(lad_matx, 0));
 
     // Print the matrix
@@ -11,7 +14,8 @@ void manage_data(int lad_matx, int n_impt) {
         }
         std::cout << std::endl;
     }
+
+    
 }
 
-int main(){}
 
