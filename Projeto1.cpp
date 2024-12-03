@@ -2,6 +2,8 @@
 #include <vector>
 
 
+
+
 int main(){
     int lad_matx, n_inpt, n_resul, num;
     std::string line;
@@ -32,6 +34,19 @@ int main(){
         eq[i] >> matrixsol[i][i][i-1][0];
     }
 
+    for (int i = 0; i < n_inpt; i++) {
+        int j = i+1;
+        int sol_esq = eq[i]-1;
+        int sol_dir = eq[j]-1;
+        sol = matrixeq[sol_esq][sol_dir];
+        matrixsol[i][j][sol-1][0] = sol;
+        matrixsol[i][j][sol-1][2] = sol_esq +1;
+        matrixsol[i][j][sol-1][3] = sol_dir +1;
+        }
+
+
+    std::getline(std::cin, line);
+    std::sscanf(line, %d, &n_resul);
     
 
 }
