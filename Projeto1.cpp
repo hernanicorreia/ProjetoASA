@@ -76,13 +76,14 @@ int main() {
                     for(const std::vector<int>& vec_d : sol_d){
                         int sol = eq[vec_e[0]-1][vec_d[0]-1];
                         add_sol(sol, k, vec_e[0], vec_d[0], i, j);
-
+ 
                     }
                 }
             }
         }
+        counter++;
     }
-    #resolve
+    
     
 
     std::getline(std::cin, line);
