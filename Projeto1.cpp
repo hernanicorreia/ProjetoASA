@@ -19,9 +19,20 @@ int main(){
         }
     }
 
+    std::vector<int> eq(n_inpt, 0);
+    std::getline(std::cin, line);
+    std::stringstream ss(line);
+    for (int i = 0; i < n_inpt; ++i) {
+        ss >> eq[i];
+    }
+
     std::vector<std::vector<std::vector<std::vector<int>>>> matrixsol(n_inpt, std::vector<std::vector<int>>(n_inpt, std::vector<int>(lad_matx, std::vector<int>(4, 0))));
     
-    
+    for (int i = 0; i < n_inpt; ++i) {
+        
+    }
+
+
 }
 
 
