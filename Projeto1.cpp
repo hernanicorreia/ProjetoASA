@@ -29,9 +29,10 @@ int main(){
     std::vector<std::vector<std::vector<std::vector<int>>>> matrixsol(n_inpt, std::vector<std::vector<int>>(n_inpt, std::vector<int>(lad_matx, std::vector<int>(4, 0))));
     
     for (int i = 0; i < n_inpt; ++i) {
-        
+        eq[i] >> matrixsol[i][i][i-1][0];
     }
 
+    
 
 }
 
