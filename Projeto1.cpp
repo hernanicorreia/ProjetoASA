@@ -10,6 +10,7 @@ int main() {
     std::string line;
     std::getline(std::cin, line);
     std::sscanf(line.c_str(), "%d %d", &lad_matx, &n_inpt);
+    
 
     std::vector<std::vector<int>> matrixeq(lad_matx, std::vector<int>(lad_matx, 0));
 
@@ -28,6 +29,8 @@ int main() {
         return -1
     }
 
+    
+
 
     // Input the matrix
     for (int i = 0; i < lad_matx; ++i) {
@@ -38,6 +41,8 @@ int main() {
         }
     }
 
+    
+
     std::vector<int> eq(n_inpt, 0);
     std::getline(std::cin, line);
     std::stringstream ss_eq(line);
@@ -45,11 +50,28 @@ int main() {
         ss_eq >> eq[i];
     }
 
+
+    std::getline(std::cin, line);
+    std::sscanf(line.c_str(), "%d", &n_resul);
+
+    if(n_inpt == 1){
+        if(eq[0] == n_resul){
+            std::cout << 1 << std::endl;
+            std::cout << eq[0] << std::endl;
+            return 0;
+        }
+        else{
+            std::cout << 0 << std::endl;
+            return 0;
+        }
+    }
+
+
     std::vector<std::vector<std::vector<std::vector<int>>>> matrixsol(n_inpt, std::vector<std::vector<std::vector<int>>>(n_inpt, std::vector<std::vector<int>>(lad_matx, std::vector<int>(4, 0))));
     
     for (int i = 0; i < n_inpt; ++i) {
         if (i > 0) {
-            matrixsol[i][i][i-1][0] = eq[i];
+            matrixsol[i][i][0][0] = eq[i];
         }
     }
 
@@ -86,8 +108,7 @@ int main() {
     
     
 
-    std::getline(std::cin, line);
-    std::sscanf(line.c_str(), "%d", &n_resul);
+    
 
     std::vector<std::vector<std::string>> parentheses(n_inpt, std::vector<std::string>(n_inpt, ""));
     for (int i = 0; i < n_inpt; ++i) {
