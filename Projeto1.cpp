@@ -39,13 +39,26 @@ int main() {
         int sol_esq = eq[i]-1;
         int sol_dir = eq[j]-1;
         int sol = matrixeq[sol_esq][sol_dir];
-        matrixsol[i][j][sol-1][0] = sol;
-        matrixsol[i][j][sol-1][2] = sol_esq +1;
-        matrixsol[i][j][sol-1][3] = sol_dir +1;
+        matrixsol[i][j][0][0] = sol;
+        matrixsol[i][j][0][2] = sol_esq +1;
+        matrixsol[i][j][0][3] = sol_dir +1;
         }
 
 
     std::getline(std::cin, line);
     std::sscanf(line.c_str(), "%d", &n_resul);
+
+    std::vector<std::vector<std::string>> parentheses(n_inpt, std::vector<std::string>(n_inpt, ""));
+    for (int i = 0; i < n_inpt; ++i) {
+        parentheses[i][i] = std::to_string(eq[i]);
+    }
+
+    for (int length = 2; length <= n_inpt; ++length) {
+        for (int i = 0; i <= n_inpt - length; ++i) {
+            int j = i + length - 1;
+            int k = matrixsol[i][j][0][1];
+            parentheses[i][j] = "(" + parentheses[i][k] + " x " + parentheses[k + 1][j] + ")";
+        }
+    }
 
 }
