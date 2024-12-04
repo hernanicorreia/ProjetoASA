@@ -5,8 +5,38 @@
 
 
 
+
+
+int add_sol(int sol, int k, int sol_e, int sol_d, int col, int lin, std::vector<std::vector<std::vector<std::vector<int>>>> matrixsol, int lad_matx){
+        for(int i = 0; i < lad_matx; i++){
+            if(matrixsol[lin][col][i][0]==0){
+                matrixsol[lin][col][i][0] = sol;
+                matrixsol[lin][col][i][1] = k;
+                matrixsol[lin][col][i][2] = sol_e;
+                matrixsol[lin][col][i][3] = sol_d;
+                return 1;
+            }
+            if(matrixsol[lin][col][i][0] == sol)
+                return 0;
+        }
+        return -1;
+    }
+
+
+
+std::vector<int> get_sol(int lin, int col, int result, std::vector<std::vector<std::vector<std::vector<int>>>> matrixsol, int lad_matx){
+        for(int i = 0; i < lad_matx; i++){
+            if(matrixsol[lin][col][i][0] == result){
+                return matrixsol[lin][col][i];
+            }
+        }
+        return {-1, -1, -1, -1};
+    }
+
+
+
 int main() {
-    int lad_matx, n_inpt, n_resul, num;
+    int lad_matx, n_inpt, n_resul;
     std::string line;
     std::getline(std::cin, line);
     std::sscanf(line.c_str(), "%d %d", &lad_matx, &n_inpt);
@@ -14,20 +44,7 @@ int main() {
 
     std::vector<std::vector<int>> matrixeq(lad_matx, std::vector<int>(lad_matx, 0));
 
-    int add_sol(int sol, int k, int sol_e, int sol_d, int col, int lin){
-        for(i = 0; i < lad_matx; i++){
-            if(matrixsol[lin][col][i][0]==0){
-                matrixsol[lin][col][i][0] = sol;
-                matrixsol[lin][col][i][1] = k;
-                matrixsol[lin][col][i][2] = sol_e;
-                matrixsol[lin][col][i][3] = sol_d;
-                return 1
-            }
-            if(matrixsol[lin][col][i][0] == sol)
-                return 0;
-        }
-        return -1
-    }
+    
 
 
 
@@ -96,8 +113,8 @@ int main() {
                 std::vector<std::vector<int>> sol_d = matrixsol[k][j];
                 for(const std::vector<int>& vec_e : sol_e ){
                     for(const std::vector<int>& vec_d : sol_d){
-                        int sol = eq[vec_e[0]-1][vec_d[0]-1];
-                        add_sol(sol, k, vec_e[0], vec_d[0], i, j);
+                        int sol = matrixeq[vec_e[0]-1][vec_d[0]-1];
+                        add_sol(sol, k, vec_e[0], vec_d[0], i, j, matrixsol, lad_matx);
  
                     }
                 }
@@ -106,14 +123,7 @@ int main() {
         counter++;
     }
 
-    std::vector<int> get_sol(int lin, int col, int result){
-        for(int i = 0; i < lad_matx; i++){
-            if(matrixsol[lin][col][i][0] == result){
-                return matrixsol[lin][col][i];
-            }
-        }
-        return {-1, -1, -1, -1};
-    }
+    
     
     
 
