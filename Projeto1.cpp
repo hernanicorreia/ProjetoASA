@@ -5,6 +5,8 @@
 
 
 
+
+
 std::vector<int> get_sol(int lin, int col, int result, std::vector<std::vector<std::vector<std::vector<int>>>> matrixsol, int lad_matx){
         for(int i = 0; i < lad_matx; i++){
             if(matrixsol[lin][col][i][0] == result){
@@ -21,17 +23,18 @@ std::vector<int> get_parents(int i, int j, int result, std::vector<std::vector<s
         vec[2*i]++;
         vec[2*i+1]++;
         return vec;
-    
+    }
     std::vector<int>solution = get_sol(i, j, result, matrixsol, lad_max);
     int k = solution[1];
     vec[2*i]++;
     vec[2*i+1]++;
     get_parents(i, k-1, solution[2], matrixsol, lad_max, vec);
     get_parents(k, j, solution[3], matrixsol, lad_max, vec);
-    }
-    
-    
+    return vec;
 }
+    
+    
+
 
 
 int add_sol(int sol, int k, int sol_e, int sol_d, int col, int lin, std::vector<std::vector<std::vector<std::vector<int>>>> matrixsol, int lad_matx){
@@ -50,7 +53,22 @@ int add_sol(int sol, int k, int sol_e, int sol_d, int col, int lin, std::vector<
     }
 
 
-
+std::string formatvec(std::vector<int> vec, std::vector<int> eq){
+    std::string result;
+    int size = vec.size();
+    for(int i = 0; i < size; i++){
+        for(int j = 0; j < vec[i*2]; j++){
+            result += eq[i] + "(";
+        }
+        result += eq[i];
+        
+        for(int j = 0; j < vec[i*2+1]; j++){
+            result += ")";
+        }
+        result += " + ";
+    }
+    return result;
+}
 
 
 
@@ -147,8 +165,10 @@ int main() {
 
     int i = 0;
     int j = n_inpt-1;
+    vec = get_parents(i, j, n_resul, matrixsol, lad_matx, vec);
 
-
+    std::string result = formatvec(vec, eq);
+    std::cout << result << std::endl;
     
 
 }
