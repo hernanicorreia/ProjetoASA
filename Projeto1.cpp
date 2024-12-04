@@ -5,6 +5,33 @@
 
 
 
+std::vector<int> get_sol(int lin, int col, int result, std::vector<std::vector<std::vector<std::vector<int>>>> matrixsol, int lad_matx){
+        for(int i = 0; i < lad_matx; i++){
+            if(matrixsol[lin][col][i][0] == result){
+                return matrixsol[lin][col][i];
+            }
+        }
+        return {-1, -1, -1, -1};
+    }
+
+
+std::vector<int> get_parents(int i, int j, int result, std::vector<std::vector<std::vector<std::vector<int>>>> matrixsol, int lad_max, std::vector<int> vec){
+    if (j-1 == 0) return vec;
+    if (j-1 == 1){
+        vec[2*i]++;
+        vec[2*i+1]++;
+        return vec;
+    
+    std::vector<int>solution = get_sol(i, j, result, matrixsol, lad_max);
+    int k = solution[1];
+    vec[2*i]++;
+    vec[2*i+1]++;
+    get_parents(i, k-1, solution[2], matrixsol, lad_max, vec);
+    get_parents(k, j, solution[3], matrixsol, lad_max, vec);
+    }
+    
+    
+}
 
 
 int add_sol(int sol, int k, int sol_e, int sol_d, int col, int lin, std::vector<std::vector<std::vector<std::vector<int>>>> matrixsol, int lad_matx){
@@ -24,14 +51,6 @@ int add_sol(int sol, int k, int sol_e, int sol_d, int col, int lin, std::vector<
 
 
 
-std::vector<int> get_sol(int lin, int col, int result, std::vector<std::vector<std::vector<std::vector<int>>>> matrixsol, int lad_matx){
-        for(int i = 0; i < lad_matx; i++){
-            if(matrixsol[lin][col][i][0] == result){
-                return matrixsol[lin][col][i];
-            }
-        }
-        return {-1, -1, -1, -1};
-    }
 
 
 
@@ -124,22 +143,12 @@ int main() {
     }
 
     
-    
-    
+    std::vector<int> vec(2 * n_inpt, 0);    
+
+    int i = 0;
+    int j = n_inpt-1;
+
 
     
-
-    std::vector<std::vector<std::string>> parentheses(n_inpt, std::vector<std::string>(n_inpt, ""));
-    for (int i = 0; i < n_inpt; ++i) {
-        parentheses[i][i] = std::to_string(eq[i]);
-    }
-
-    for (int length = 2; length <= n_inpt; ++length) {
-        for (int i = 0; i <= n_inpt - length; ++i) {
-            int j = i + length - 1;
-            int k = matrixsol[i][j][0][1];
-            parentheses[i][j] = "(" + parentheses[i][k] + " x " + parentheses[k + 1][j] + ")";
-        }
-    }
 
 }
