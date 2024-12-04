@@ -29,7 +29,7 @@ int main() {
         return -1
     }
 
-    
+
 
 
     // Input the matrix
@@ -104,6 +104,15 @@ int main() {
             }
         }
         counter++;
+    }
+
+    std::vector<int> get_sol(int lin, int col, int result){
+        for(int i = 0; i < lad_matx; i++){
+            if(matrixsol[lin][col][i][0] == result){
+                return matrixsol[lin][col][i];
+            }
+        }
+        return {-1, -1, -1, -1};
     }
     
     
